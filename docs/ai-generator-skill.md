@@ -2,6 +2,8 @@
 
 Dieses Dokument beschreibt die Idee eines KI-gestützten Generators für Cabinet-JSON-Dateien.
 
+Der KI-Generator ist perspektivisch das eigentliche Entwurfswerkzeug des Projekts. Fusion 360 dient anschließend als Ausführungs-, CAD- und Geometrieumgebung.
+
 Der Generator ist zunächst kein eigenes Programm. Er ist eine technische Beschreibung, mit der eine KI aus einer Möbelbeschreibung eine vollständige und gültige Cabinet-JSON erzeugen kann.
 
 ## Ziel
@@ -20,6 +22,10 @@ Erwartete Ausgabe:
 ```text
 Eine gültige Cabinet-JSON-Datei, die genau diesen Korpus beschreibt.
 ```
+
+Diese Cabinet-JSON kann anschließend vom Fusion-Add-in geladen werden. Das Add-in erzeugt daraus eine Fusion-Komponente mit Bodies, Bohrungen, Lochreihen und Garage-Cut-Attributen.
+
+Der erzeugte Korpus kann danach in Fusion weiterbearbeitet werden. Er kann aber auch direkt über den Garage-Cut-CSV-Export an ein Zuschnittprogramm übergeben werden.
 
 ## Rolle der KI
 
@@ -49,6 +55,7 @@ Wichtig: Defaults müssen erkennbar und überschreibbar bleiben.
 8. Garage-Cut-Integration muss berücksichtigt werden.
 9. System-32-Logik soll verwendet werden, wo sie sinnvoll ist.
 10. Die Ausgabe soll validierbar gegen ein JSON-Schema sein.
+11. Die KI soll bevorzugt Cabinet-JSON erzeugen, nicht Fusion-Code oder Zuschnittlisten.
 
 ## Eingabearten
 
@@ -134,6 +141,18 @@ Richtig:
 ```
 
 Das Fusion-Add-in berechnet daraus die realen Body-Abmessungen.
+
+## Gesamtworkflow
+
+Der Zielworkflow ist:
+
+1. Nutzer beschreibt Möbelidee oder wählt ein Preset.
+2. KI erzeugt oder verändert eine Cabinet-JSON.
+3. Cabinet-JSON wird gegen das Schema validiert.
+4. Fusion-Add-in lädt die JSON.
+5. Fusion-Add-in erzeugt die Geometrie und Garage-Cut-Attribute.
+6. Nutzer bearbeitet den Korpus optional in Fusion weiter.
+7. Garage Cut exportiert CSV-Daten für Zuschnitt und weitere Fertigung.
 
 ## Preset-basierter Workflow
 
