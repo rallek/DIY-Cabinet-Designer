@@ -1,20 +1,28 @@
 # Architektur
 
-DIY Cabinet Designer soll als Ergänzung zum bestehenden Garage-Cut-Fusion-Add-in entwickelt werden.
+DIY Cabinet Designer soll als KI-gestützter Korpus-Generator mit Fusion 360 als Ausführungsumgebung entwickelt werden.
 
 Die zentrale Architekturidee ist:
 
 ```text
+Möbelidee / Beschreibung
+        ↓
 KI-Generator / Preset
         ↓
-Cabinet-JSON
+validierte Cabinet-JSON
         ↓
 Fusion Add-in
         ↓
 Fusion-Komponente mit Bodies, Bohrungen und Garage-Cut-Attributen
         ↓
-Garage-Cut-Export und weitere Fertigungswerkzeuge
+optional: Weiterarbeit in Fusion 360
+        ↓
+Garage-Cut-CSV-Export
+        ↓
+Zuschnittprogramm und weitere Fertigungswerkzeuge
 ```
+
+Fusion 360 ist damit nicht die primäre Entwurfsoberfläche, sondern vor allem CAD-, Geometrie- und Ausführungsumgebung. Der eigentliche Entwurf wird perspektivisch über KI, Presets und validierte Cabinet-JSON-Dateien beschrieben.
 
 ## Schichten
 
@@ -59,6 +67,8 @@ Der Generator ist zunächst kein eigenes Programm, sondern eine KI-freundliche S
 
 Ziel ist, dass eine KI aus einer Möbelbeschreibung eine technisch gültige Cabinet-JSON-Datei erzeugen kann.
 
+Der KI-Generator ist perspektivisch die eigentliche Entwurfslogik des Projekts. Er übersetzt Anforderungen, Varianten und Presets in eine eindeutige technische Beschreibung.
+
 Dafür braucht das Projekt:
 
 - klare Regeln
@@ -71,6 +81,8 @@ Dafür braucht das Projekt:
 
 Das Fusion Add-in lädt eine Cabinet-JSON-Datei und erzeugt daraus Geometrie.
 
+Das Add-in soll möglichst wenig Entwurfslogik in Dialoge verlagern. Seine Hauptaufgabe ist die robuste Ausführung der JSON-Regeln in Fusion.
+
 Aufgaben des Add-ins:
 
 - JSON-Datei laden
@@ -82,7 +94,13 @@ Aufgaben des Add-ins:
 - Garage-Cut-Attribute setzen
 - sinnvolle Body-Namen vergeben
 
-### 5. Garage-Cut-Integration
+### 5. Weiterarbeit in Fusion
+
+Der erzeugte Korpus kann in Fusion 360 weiterbearbeitet werden.
+
+Das ist eine Möglichkeit, aber nicht zwingend Teil des Hauptworkflows. Ein Korpus soll auch direkt aus der erzeugten Geometrie und den Garage-Cut-Attributen weiterverarbeitet werden können.
+
+### 6. Garage-Cut-Integration
 
 Das bestehende Garage-Cut-Fusion-Add-in bleibt verantwortlich für:
 
@@ -95,6 +113,8 @@ Das bestehende Garage-Cut-Fusion-Add-in bleibt verantwortlich für:
 - weitere externe Fertigungsdaten
 
 DIY Cabinet Designer soll diese Daten vorbereiten, nicht ersetzen.
+
+Der CSV-Export aus Garage Cut ist der Übergang zu Zuschnittprogrammen und weiteren Fertigungswerkzeugen.
 
 ## Fusion-Modellstruktur
 
@@ -142,3 +162,4 @@ Damit bleibt die Logik einfacher und robuster als eine vollständige Rückwärts
 - Wird JSON direkt im Fusion-Add-in ausgewählt oder über Preset-Listen geladen?
 - Wie wird validiert, ob eine Konfiguration konstruktiv sinnvoll ist?
 - Soll das Add-in später erzeugte JSON-Konfigurationen im Fusion-Modell als Attribute speichern?
+- Wie viel Bedienoberfläche braucht das Fusion-Add-in, wenn der Entwurf primär über KI und JSON entsteht?
