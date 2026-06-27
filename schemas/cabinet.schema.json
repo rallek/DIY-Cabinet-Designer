@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rallek/DIY-Cabinet-Designer/schemas/cabinet.schema.json",
+  "title": "DIY Cabinet Designer Cabinet Configuration",
+  "description": "Early placeholder schema for one cabinet configuration. This schema is intentionally minimal and will be expanded during development.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "cabinet"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Version of the Cabinet JSON format."
+    },
+    "cabinet": {
+      "type": "object",
+      "required": [
+        "type",
+        "dimensions_mm"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "base_cabinet",
+            "wall_cabinet",
+            "shelf",
+            "drawer_cabinet",
+            "free_carcass"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "dimensions_mm": {
+          "type": "object",
+          "required": [
+            "width",
+            "height",
+            "depth"
+          ],
+          "properties": {
+            "width": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "height": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "depth": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "materials": {
+      "type": "object"
+    },
+    "construction": {
+      "type": "object"
+    },
+    "back_panel": {
+      "type": "object"
+    },
+    "system32": {
+      "type": "object"
+    },
+    "layout": {
+      "type": "object"
+    },
+    "fronts": {
+      "type": "object"
+    },
+    "drawers": {
+      "type": "object"
+    },
+    "hardware": {
+      "type": "object"
+    },
+    "garage_cut": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}
