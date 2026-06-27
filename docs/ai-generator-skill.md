@@ -166,6 +166,20 @@ Beispiel:
 4. KI erzeugt vollständige Cabinet-JSON.
 5. Fusion Add-in lädt JSON und erzeugt Geometrie.
 
+## Validierung mit kleinen lokalen Modellen
+
+Der Skill soll so klar beschrieben sein, dass auch ein kleines lokal betriebenes Modell aus einfachen Möbelbeschreibungen gültige Cabinet-JSON-Dateien erzeugen kann.
+
+Lokale Modelle dienen damit als Qualitätsprüfung für die Spezifikation. Wenn ein kleines Modell mit Schema, Presets und Beispielen zuverlässig gültige JSON erzeugen kann, ist davon auszugehen, dass größere Modelle die Aufgabe ebenfalls bewältigen.
+
+Bewertet wird nicht eine exakt identische Ausgabe, sondern:
+
+- gültige JSON gegen das Schema
+- vollständige Beschreibung genau eines Korpus
+- regelbasierte Beschreibung statt berechneter Bauteilmaße
+- sinnvolle Verwendung dokumentierter Defaults
+- vorbereitete Garage-Cut-Integration
+
 ## Pull-Request-Modell
 
 Neue Korpustypen und Möbelvarianten können später als Pull Request ergänzt werden.
