@@ -1,0 +1,12 @@
+{
+  "autodeskProduct": "Fusion360",
+  "type": "addin",
+  "id": "diy-cabinet-designer-prototype",
+  "author": "DIY Cabinet Designer",
+  "description": {
+    "": "Prototype Fusion 360 add-in skeleton for DIY Cabinet Designer."
+  },
+  "version": "0.1.0",
+  "runOnStartup": false,
+  "supportedOS": "windows|mac"
+}
